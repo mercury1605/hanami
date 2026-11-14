@@ -2,9 +2,9 @@ name: Backend CI and demo deploy
 
 on:
   pull_request:
-    branches: [master]
+    branches: [prod, dev]
   push:
-    branches: [master]
+    branches: [prod, dev]
     paths: ['pom.xml', 'libs/**', 'infra/**', 'services/**', 'deploy/**', '.gitattributes', '.github/workflows/backend-demo.yml']
   workflow_dispatch:
 
@@ -113,7 +113,7 @@ jobs:
           docker compose --env-file "$env_file" -f docker-compose.yml \
             -f deploy/demo/docker-compose.demo.yml -f deploy/demo/docker-compose.ci.yml build
       - name: Package exact source and verified JARs
-        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request' && vars.DEMO_DEPLOY_ENABLED == 'true'
+        if: github.ref == 'refs/heads/prod' && github.event_name != 'pull_request' && vars.DEMO_DEPLOY_ENABLED == 'true'
         shell: bash
         run: |
           set -euo pipefail
@@ -129,7 +129,7 @@ jobs:
           sha256sum backend-release.tar.gz > backend-release.tar.gz.sha256
       - uses: actions/upload-artifact@v4
         id: release_artifact
-        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request' && vars.DEMO_DEPLOY_ENABLED == 'true'
+        if: github.ref == 'refs/heads/prod' && github.event_name != 'pull_request' && vars.DEMO_DEPLOY_ENABLED == 'true'
         with:
           name: backend-release
           path: |
@@ -147,7 +147,7 @@ jobs:
 
   deploy:
     needs: verify
-    if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request' && vars.DEMO_DEPLOY_ENABLED == 'true'
+    if: github.ref == 'refs/heads/prod' && github.event_name != 'pull_request' && vars.DEMO_DEPLOY_ENABLED == 'true'
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     permissions:
@@ -173,11 +173,11 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          latest=$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/master" --jq '.object.sha')
+          latest=$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/prod" --jq '.object.sha')
           if [[ "$latest" == "$GITHUB_SHA" ]]; then
             echo 'deploy=true' >> "$GITHUB_OUTPUT"
           else
-            echo 'A newer master commit exists; skipping this deployment.'
+            echo 'A newer prod commit exists; skipping this deployment.'
           fi
       - name: Configure SSH and deploy verified release
         if: steps.latest.outputs.deploy == 'true'

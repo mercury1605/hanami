@@ -3,13 +3,15 @@ name: Build Android APK
 on:
   push:
     branches:
-      - master
+      - prod
+      - dev
     paths:
       - "mobile/**"
       - ".github/workflows/android-apk.yml"
   pull_request:
     branches:
-      - master
+      - prod
+      - dev
     paths:
       - "mobile/**"
       - ".github/workflows/android-apk.yml"
