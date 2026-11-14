@@ -2,14 +2,12 @@
 
 Ứng dụng chia sẻ ảnh nhanh giữa bạn bè (kiểu Locket) với danh tính **ẩn danh**: mỗi người hiện ra bằng alias và một avatar con vật **duy nhất** (không ai trùng), kết bạn bằng cách quẹt thẻ người lân cận/đang online. Ảnh được đăng **nguyên bản** (không còn ẩn mặt), chỉ bạn bè xem được; app tự xoá EXIF/GPS trước khi upload.
 
-Tài liệu đầy đủ: [docs/README.md](docs/README.md) (kế hoạch kiến trúc gốc: [docs/ARCHITECTURE_PLAN.md](docs/ARCHITECTURE_PLAN.md)).
-
 ## Cấu trúc
 
 ```
 libs/common          event envelope, KeyValueStore, lỗi RFC 7807, bảo mật dùng chung, DLQ Kafka
 libs/outbox-jpa      Outbox pattern + khử trùng lặp event cho service dùng JPA
-libs/avatar-lib      build-lib.mjs sinh thư viện avatar con vật (docs/19)
+libs/avatar-lib      build-lib.mjs sinh thư viện avatar con vật
 infra/config-server  Spring Cloud Config (đọc infra/config-repo)
 infra/eureka-server  service discovery
 infra/api-gateway    JWT, gắn X-Public-Id, circuit breaker, rate limit
@@ -55,8 +53,8 @@ Chi tiết các profile (`core`, `app`, `obs`) ở [deploy/README.md](deploy/REA
 2. Danh tính người gọi lấy từ header `X-Public-Id` do **gateway** gắn. Endpoint `/internal/**` chỉ nhận request có `X-Internal-Token`.
 3. Event đi qua Outbox (cùng transaction với dữ liệu), consumer phải idempotent theo `eventId`.
 4. Thanh toán, xác thực, quan hệ bạn bè (xem ảnh, chat), vị trí: **fail closed**. Feed, thông báo, gợi ý: **fail soft**.
-5. Ảnh upload xong (`complete` kiểm tra cỡ và `Content-Type`) là được đăng ngay; không có bước ẩn mặt (xem ADR-014 trong [docs/15-adr.md](docs/15-adr.md)).
+5. Ảnh upload xong (`complete` kiểm tra cỡ và `Content-Type`) là được đăng ngay; không có bước ẩn mặt.
 
 ## Trạng thái
 
-Đã có code và test cho mọi service và app mobile. **Chưa kiểm chứng** với hạ tầng thật: MySQL/PostgreSQL/Kafka/R2/Keycloak, Docker Compose sau khi chuyển sang R2 + DB ngoài, và xác thực biên lai thật với Apple/Google. Danh sách đầy đủ ở [docs/14-roadmap-risks.md](docs/14-roadmap-risks.md).
+Đã có code và test cho mọi service và app mobile. **Chưa kiểm chứng** với hạ tầng thật: MySQL/PostgreSQL/Kafka/R2/Keycloak, Docker Compose sau khi chuyển sang R2 + DB ngoài, và xác thực biên lai thật với Apple/Google.
