@@ -17,7 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:animal_locket/core/l10n/tr.dart';
 
-/// Nhận avatar như một tấm polaroid đang rửa (spec §7.3).
+/// Nhận avatar như một tấm polaroid đang rửa.
 class RevealScreen extends ConsumerStatefulWidget {
   const RevealScreen({super.key, required this.birthDate});
   final String birthDate;

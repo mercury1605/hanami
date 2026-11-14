@@ -72,7 +72,7 @@ class _GlyphDrawingPadState extends State<GlyphDrawingPad> {
     child: SizedBox(
       height: widget.height,
       width: double.infinity,
-      // Trang giấy chấm lưới, viền gạch đứt (spec §7.6).
+      // Trang giấy chấm lưới, viền gạch đứt.
       child: CustomPaint(
         painter: _DotGridPainter(
           paper: context.album.paper,

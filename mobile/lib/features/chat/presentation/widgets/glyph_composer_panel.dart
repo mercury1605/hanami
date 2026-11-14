@@ -100,7 +100,7 @@ class _GlyphComposerPanelState extends ConsumerState<GlyphComposerPanel> {
       glyphComposerProvider(widget.conversationId).notifier,
     );
     final canEdit = widget.enabled && !composer.busy;
-    // Tờ giấy đặt dưới đáy, mép trên răng cưa như giấy xé (spec §7.6).
+    // Tờ giấy đặt dưới đáy, mép trên răng cưa như giấy xé.
     return ClipPath(
       clipper: const TornPaperClipper(),
       child: Material(

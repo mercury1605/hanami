@@ -41,7 +41,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.jwt;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
-/** Bảo đảm cốt lõi: không bao giờ có hai người cùng một avatar (docs/19-avatar-mechanism.md §4). */
+/** Bảo đảm cốt lõi: không bao giờ có hai người cùng một avatar. */
 @SpringBootTest
 @AutoConfigureMockMvc
 class AvatarAllocationIntegrationTest {
@@ -89,7 +89,7 @@ class AvatarAllocationIntegrationTest {
 
     @Test
     void origamiLibraryV2KeepsEveryKeyOnV1() {
-        // v2 chỉ vẽ lại hình (docs/19 §3.2, ADR-015): khoá vẫn thuộc phiên bản đầu tiên có nó.
+        // v2 chỉ vẽ lại hình: khoá vẫn thuộc phiên bản đầu tiên có nó.
         assertEquals(2, library.latestVersion());
         assertEquals(3000, library.allKeys().size());
         assertTrue(library.allKeys().values().stream().allMatch(v -> v == 1));

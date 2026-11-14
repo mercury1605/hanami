@@ -18,7 +18,7 @@ spring:
   jpa:
     open-in-view: false
     hibernate:
-      ddl-auto: ${JPA_DDL_AUTO:none}   # đổi sang validate sau khi đã kiểm tra với MySQL thật (xem docs/14)
+      ddl-auto: ${JPA_DDL_AUTO:none}   # đổi sang validate sau khi đã kiểm tra với MySQL thật
   data:
     redis:
       host: ${REDIS_HOST:localhost}

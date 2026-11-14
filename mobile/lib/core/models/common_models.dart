@@ -97,7 +97,7 @@ class MeProfile extends PublicProfile {
   final AccountPlan plan;
   final DateTime createdAt;
 
-  /// Số lượt quay avatar còn lại (tặng kèm mỗi kỳ thuê bao Pro, docs/19 §8).
+  /// Số lượt quay avatar còn lại (tặng kèm mỗi kỳ thuê bao Pro).
   final int avatarSpins;
 }
 

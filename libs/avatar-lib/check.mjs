@@ -1,5 +1,5 @@
 // Tự kiểm thư viện avatar: node libs/avatar-lib/check.mjs
-// Sinh mọi phiên bản vào thư mục tạm rồi kiểm các quy tắc ở docs/19 §3.2.
+// Sinh mọi phiên bản vào thư mục tạm rồi kiểm các quy tắc của thư viện avatar.
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
 import { mkdtempSync, readFileSync, readdirSync } from "node:fs";
@@ -38,7 +38,7 @@ for (const lib of libs) {
     assert.ok(!render(lib, key).includes("{{"), `v${lib.version} ${key} còn chỗ trống màu`);
   }
 }
-// v2 origami "gấp đơn giản" (spec §5.1).
+// v2 origami "gấp đơn giản".
 const v2 = libs.find((l) => l.version === 2);
 assert.ok(v2, "chưa có v2");
 const hex = /^#[0-9A-F]{6}$/i;

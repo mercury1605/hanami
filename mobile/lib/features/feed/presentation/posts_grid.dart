@@ -69,7 +69,7 @@ final userPostsProvider =
       UserPostsController.new,
     );
 
-/// Lưới 3 cột ảnh in nhỏ dán nghiêng của một người (spec §7.5). [mine]: hiện cả bài đang xử lý/bị từ chối và cho xoá.
+/// Lưới 3 cột ảnh in nhỏ dán nghiêng của một người. [mine]: hiện cả bài đang xử lý/bị từ chối và cho xoá.
 class PostsGrid extends ConsumerWidget {
   const PostsGrid({
     super.key,

@@ -4,7 +4,7 @@ import 'package:animal_locket/core/theme/album_palette.dart';
 import 'package:flutter/material.dart';
 
 /// Ảnh in dán vào sổ: viền giấy, bóng mềm, hơi nghiêng, băng washi ở mép trên
-/// (spec §3, mockup combined-v1).
+///.
 class WashiPhotoCard extends StatelessWidget {
   const WashiPhotoCard({
     super.key,

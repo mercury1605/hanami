@@ -19,7 +19,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:animal_locket/core/l10n/tr.dart';
 
-/// Hồ sơ của tôi như một trang album (spec §7.7).
+/// Hồ sơ của tôi như một trang album.
 class ProfileScreen extends ConsumerWidget {
   const ProfileScreen({super.key});
   @override

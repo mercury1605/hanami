@@ -156,7 +156,7 @@ class BillingFlowIntegrationTest {
         assertEquals(2, events(EventTypes.CONSUMABLE_GRANTED).size());
     }
 
-    /** docs/19 §8: một lượt quay avatar cho MỖI kỳ thuê bao, không phải mỗi lần phát SUBSCRIPTION_ACTIVATED. */
+    /** một lượt quay avatar cho MỖI kỳ thuê bao, không phải mỗi lần phát SUBSCRIPTION_ACTIVATED. */
     @Test
     void subscriptionGrantsOneAvatarSpinPerPeriod() throws Exception {
         Instant exp = Instant.now().plus(Duration.ofDays(30));

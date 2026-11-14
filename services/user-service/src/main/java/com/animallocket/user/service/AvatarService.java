@@ -54,11 +54,11 @@ public class AvatarService {
     }
 
     /**
-     * Đổi avatar đang dùng sang một avatar đã có trong bộ sưu tập (docs/19 §4.3).
+     * Đổi avatar đang dùng sang một avatar đã có trong bộ sưu tập.
      *
      * <p>Chỉ nhận avatar mà chính người này đang sở hữu trong {@code user_avatars}; phiên bản thư viện lấy từ bản
      * ghi đã lưu, không tin phần phiên bản trong mã do client gửi. Avatar cũ vẫn thuộc người này trong
-     * {@code avatar_pool}, nên không ai khác quay ra được (§4.3) và đổi qua lại bao nhiêu lần cũng được.
+     * {@code avatar_pool}, nên không ai khác quay ra được và đổi qua lại bao nhiêu lần cũng được.
      *
      * @param code mã avatar dạng "v:animal:palette:accessory" như {@code GET /users/me/avatars} trả về
      */

@@ -35,7 +35,7 @@ import java.util.UUID;
 public class BillingService {
     private static final Logger log = LoggerFactory.getLogger(BillingService.class);
     static final Set<String> CONSUMABLE_ITEMS = Set.of("BOOST", "PRIORITY_INVITE");
-    /** Lượt quay avatar tặng kèm thuê bao. Số dư do user-service giữ (docs/19 §8), billing chỉ ghi sổ cái. */
+    /** Lượt quay avatar tặng kèm thuê bao. Số dư do user-service giữ, billing chỉ ghi sổ cái. */
     static final String AVATAR_SPIN = "AVATAR_SPIN";
     private static final String SPIN_REASON = "SUB_PERIOD";
 

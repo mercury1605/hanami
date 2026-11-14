@@ -7,7 +7,7 @@ public final class Events {
     private Events() {
     }
 
-    /** {@code avatar} = mã avatar "v:animal:palette:accessory" (xem docs/19-avatar-mechanism.md). */
+    /** {@code avatar} = mã avatar "v:animal:palette:accessory". */
     public record UserRegistered(String publicId, String ageGroup, String leadAnimal, String avatar) {
     }
 

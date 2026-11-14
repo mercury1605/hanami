@@ -14,7 +14,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:animal_locket/core/l10n/tr.dart';
 
-/// Xem trước: ảnh in dán băng, lời nhắn viết tay ở lề dưới (spec §7.4).
+/// Xem trước: ảnh in dán băng, lời nhắn viết tay ở lề dưới.
 class PreviewScreen extends ConsumerStatefulWidget {
   const PreviewScreen({super.key, this.imagePath});
   final String? imagePath;

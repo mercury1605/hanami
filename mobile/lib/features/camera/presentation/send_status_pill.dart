@@ -15,7 +15,7 @@ import 'package:animal_locket/core/l10n/tr.dart';
 const _sentGreen = Color(0xFF2F6B3A);
 
 /// Nhãn giấy dán washi nổi trên camera: "Đang gửi…" → "Đã gửi" (tự ẩn) hoặc lỗi
-/// + "Thử lại" (spec §7.4). Nền giấy đục nên đọc rõ trên mọi ảnh.
+/// + "Thử lại". Nền giấy đục nên đọc rõ trên mọi ảnh.
 class SendStatusPill extends ConsumerWidget {
   const SendStatusPill({super.key});
 

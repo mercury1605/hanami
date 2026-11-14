@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 /// Avatar hiện tại của chính người dùng, cập nhật ngay khi đổi avatar hoặc quay được avatar mới.
 ///
-/// Danh sách bài đăng do server trả về, mà post-service cache hồ sơ tác giả vài phút (docs/19 §7),
+/// Danh sách bài đăng do server trả về, mà post-service cache hồ sơ tác giả vài phút,
 /// và feed đã tải hoặc lưu đệm vẫn giữ avatar cũ. Nên bài của chính mình phải lấy avatar từ đây.
 class CurrentAvatar {
   const CurrentAvatar({required this.publicId, this.avatar, this.leadAnimal});

@@ -1,26 +1,64 @@
-# Animal Locket Flutter Agent Rules
+# Animal Locket — quy tắc cho agent (Claude Code, Codex)
 
-## Scope
+Monorepo microservice (Java 17 / Spring Boot 3.3 / Spring Cloud 2023.0) + app Flutter (`mobile/`).
 
-- Only implement the Flutter mobile client in `mobile/` unless the user explicitly expands the scope.
-- Do not modify Java services, Python workers, infrastructure, deployment files, or backend behavior.
-- Treat `docs/17-flutter-app-requirements.md` as the mobile product requirement and `docs/06-api-reference.md` as the API contract.
-- If a requested UI behavior is unsupported by the API, follow the documented MVP decision and keep the limitation visible in code comments or feature flags instead of inventing an endpoint.
+## Nhánh và quy trình
 
-## Flutter requirements
+- `prod` = bản chạy thật, `dev` = tích hợp. Nhánh `feature/*`, `bugfix/*` checkout từ `dev`, merge về `dev` bằng PR; `dev` → `prod` khi phát hành. Không push thẳng `prod`.
+- Commit theo Conventional Commits. Xem `git diff` trước khi commit. Không commit `.env`/bí mật.
+- Đổi hành vi thì cập nhật luôn file này nếu quy tắc thay đổi.
 
-- Target iOS and Android only with Dart 3 and null safety.
-- Use feature-first organization under `lib/features/<feature>/{data,domain,presentation}`.
-- Use Riverpod for state, Dio for HTTP, GoRouter for navigation, and ARB localization for user-facing text.
-- Never send `X-Public-Id`; the gateway owns that header. Authenticated API calls use `Authorization: Bearer <JWT>`.
-- Map RFC 7807 errors by stable `code`, never by `detail`.
-- Never log tokens, signed media URLs, photos, locations, or chat content.
-- Store credentials only through secure storage. All environment URLs and client identifiers come from `--dart-define`; do not commit secrets.
-- Keep tap targets at least 44x44 logical pixels and add Vietnamese `Semantics` labels to icon-only controls.
+## Lệnh thường dùng
 
-## Quality gate
+- Build + test tất cả Java: `mvn -B install` (một module: `mvn -q -B -pl services/user-service install`)
+- Không còn face-worker; ảnh upload xong thì media-service chuyển thẳng raw→public và phát `PHOTO_READY`. EXIF/GPS do client xoá (`ImagePreparationService`, `keepExif: false`), server không kiểm tra.
+- Kết quả test nằm ở `<module>/target/surefire-reports/*.txt` (dùng `mvn -q` sẽ không in gì khi thành công)
+- Maven thỉnh thoảng lỗi `Could not transfer artifact ... Premature end of Content-Length`: chạy lại.
 
-- Every completed feature includes loading, empty, error, and success states where applicable.
-- Add or update unit/widget tests with each change.
-- Before handoff, run `flutter analyze` and `flutter test` from `mobile/` when the SDK is available.
-- Preserve backend and documentation files unless the user explicitly requests changes to them.
+## Quy ước
+
+- Package gốc `com.animallocket.<service>`; mỗi service có `domain/ repo/ service/ web/ dto/`.
+- Định danh người dùng giữa các service luôn là `publicId` (20 ký tự `[a-z2-7]`), tham chiếu bằng chuỗi, **không FK chéo DB**.
+- Controller đọc người gọi bằng `@RequestHeader(Headers.PUBLIC_ID)`; thiếu header = `PROFILE_REQUIRED` (403).
+- Lỗi nghiệp vụ: ném `ApiException` (mã `code` ổn định) → RFC 7807.
+- Event: `outbox.publish(topic, type, key, payload)` trong transaction; consumer gọi `idempotency.firstTime(eventId)`.
+- Service không dùng JPA (discovery, chat, notification) phát/nhận Kafka trực tiếp, thao tác phải idempotent.
+- `SUBSCRIPTION_ACTIVATED` là "đặt trạng thái", được phát lại mỗi lần thuê bao đổi: **không cộng dồn thứ gì theo nó**. Thứ cấp một lần mỗi kỳ thì gắn vào `BillingService` (xem `grantSpinForPeriod`) và chống trùng bằng một dòng `ledger` (`UNIQUE (reason, ref, item)`), chốt hạn hết theo **giây** vì biên lai store có độ phân giải giây còn webhook có mili.
+- Migration Flyway ở `src/main/resources/db/migration`; test dùng H2 `create-drop` nên **entity khớp SQL không được test bắt** — đổi entity thì sửa SQL.
+- Mọi cấu hình bí mật qua biến môi trường; không commit `.env`.
+- Avatar: mỗi avatar thuộc tối đa một người, cấp qua `AvatarAllocator` (UPDATE có điều kiện trên `avatar_pool`). Lượt quay mua được: số dư ở `avatar_spin_credit` của **user-service**, cố ý không ở ví billing, để `AvatarSpinService.spin()` trừ lượt và cấp avatar trong cùng transaction — kho cạn thì lượt tự rollback. Thư viện sửa ở `libs/avatar-lib/lib-vN.mjs` rồi `node libs/avatar-lib/build-lib.mjs` và `node libs/avatar-lib/check.mjs`; file phiên bản đã phát hành không được đổi một byte; phiên bản mới được vẽ lại hình nhưng phải giữ đủ bộ khoá cũ; app vẽ mọi mã bằng thư viện mới nhất có khoá đó.
+
+## Cạm bẫy đã gặp
+
+- `@Transactional` không chạy khi gọi qua `this`: tách bean (xem `PurchaseFlow` → `BillingService`).
+- Test dùng chung DB/kho key-value trong một Spring context: dọn dữ liệu ở `@BeforeEach`.
+- So sánh thời gian với Mongo: độ phân giải mili-giây (xem `ChatService.markRead`).
+- chat-service: `@SpringBootTest` phải dùng `RANDOM_PORT` (bean `webSocketContainer` không chạy ở web env MOCK). `ChatService` lưu đè cả document `conversations`, nên đừng đặt bộ đếm cần tăng nguyên tử vào đó: revision glyph = max revision + index unique `(conversationId, revision)` + thử lại (xem `GlyphService`).
+- `GlyphService.create`: mỗi lần từ chối vì "hình đã bị chiếm" đều phải đi qua `replayOr`, **cả trong `catch (DuplicateKeyException)`**. Giữa `byMutation` và `existsByShapeHash` có khe hở: một request giống hệt đang chạy song song vừa ghi xong sẽ chiếm đúng hình của chính nó, và `throw` thẳng làm mọi lần gửi lại đồng thời đều hỏng (đỏ chập chờn ở `GlyphMongoIntegrationTest.concurrentCreatesAgainstRealIndexes`).
+- Discovery: bộ thẻ = người ở gần **hoặc** đang online; thẻ không có vị trí thì `distanceBand = null`.
+- `ddl-auto` của user/media/post mặc định `none` vì chưa kiểm tra enum `validate` với MySQL thật.
+- YAML cấu hình qua Config Server: không dùng `key: {}` (map rỗng → `ConverterNotFoundException`, service không khởi động); gán ít nhất một thuộc tính.
+- Docker/Windows: cổng 80 có thể bị chặn (`HTTP_PORT=8080` + đổi `KEYCLOAK_PUBLIC_URL`); ổ ảo Docker không tự co lại (`Optimize-VHD`).
+- Không commit `.project` / `.classpath` / `.factorypath` / `.settings/` (đã vào `.gitignore`). Chúng do m2e sinh từ `pom.xml` và chứa đường dẫn theo từng máy. Khi bị commit, PR của người khác ghi đè chúng: PR #7 làm `.factorypath` mất entry annotation processor của `common`/`outbox-jpa`, Lombok ngừng chạy **trong Eclipse** và cả project đỏ, dù `mvn install` vẫn xanh. Project đỏ mà `mvn` xanh thì đó là lỗi IDE: Maven → Update Project (`Alt+F5`), tick Force Update.
+- Mobile push (firebase_messaging 17): `AndroidManifest.xml` phải có meta-data `firebase_messaging_installation_id_enabled=true`, thiếu thì `register()` ném "API disabled" và Cài đặt → Thông báo luôn báo lỗi. Test widget không bắt được lỗi này, chỉ thấy trên máy thật (log `Push registration failed`).
+- Gateway: không `mutate().headers(h -> h.remove(..))` (spring-web 6.1: `ReadOnlyHttpHeaders`, 500); copy header rồi bọc `ServerHttpRequestDecorator` (xem `IdentityFilter.rewrite`).
+- Ảnh nằm trên Cloudflare R2 (một bucket riêng tư, biến `R2_*`). R2 **không hỗ trợ presigned POST**: client `PUT` file tới URL đã ký kèm header `Content-Type`; `complete()` kiểm lại cỡ và Content-Type. Chưa chạy thử với R2 thật.
+- Keycloak local: realm dùng email làm username, cookie có `Secure` (client script phải tự gửi cookie), cần `firstName/lastName` (VERIFY_PROFILE). Sau khi restart một service, Eureka giữ bản ghi cũ ~90 giây → 503 từ gateway.
+
+## Chưa kiểm chứng
+
+`ddl-auto=validate`, Redis GEO, profile `obs`, Apple/Google thật. Đừng khẳng định chúng "chạy được" nếu chưa chạy.
+
+Mobile (phiên đăng nhập, chưa chạy trên máy thật): đăng nhập dùng `prompt=login` để Keycloak không tự vào lại tài khoản cũ; đăng xuất xóa token, cache, avatar đệm rồi dựng lại `ProviderScope` (`core/auth/session_epoch.dart`, `main.dart`); bài của mình trong feed lấy avatar từ `currentAvatarProvider`. `flutter test` và `flutter analyze` chưa chạy cho thay đổi này.
+
+## Mobile (`mobile/`, Flutter)
+
+- Chỉ iOS và Android, Dart 3 + null safety. Tổ chức theo tính năng: `lib/features/<feature>/{data,domain,presentation}`.
+- Riverpod (state), Dio (HTTP), GoRouter (điều hướng), ARB (chữ hiển thị).
+- Không bao giờ gửi `X-Public-Id` (gateway tự gắn); gọi API có xác thực bằng `Authorization: Bearer <JWT>`.
+- Map lỗi RFC 7807 theo `code` ổn định, không theo `detail`.
+- Không log token, URL media đã ký, ảnh, vị trí, nội dung chat.
+- Chỉ lưu thông tin đăng nhập qua secure storage. URL môi trường và client id lấy từ `--dart-define`; không commit bí mật.
+- Vùng chạm tối thiểu 44x44; nút chỉ có icon phải có `Semantics` tiếng Việt.
+- Mỗi tính năng có đủ trạng thái loading/empty/error/success khi áp dụng, kèm unit/widget test.
+- Trước khi bàn giao: chạy `flutter analyze` và `flutter test` trong `mobile/` nếu có SDK.

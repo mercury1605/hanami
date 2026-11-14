@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 import java.time.Instant;
 
 /**
- * Số lượt quay avatar của một người (docs/19-avatar-mechanism.md §8).
+ * Số lượt quay avatar của một người.
  *
  * <p>Hai bộ đếm chỉ tăng thay vì một số dư: số còn lại là {@code granted - used}. Nhờ vậy mọi thay đổi đều là
  * {@code UPDATE ... SET x = x + 1} có điều kiện, không bao giờ đọc-rồi-ghi, và vẫn tra được đã cấp/đã dùng bao nhiêu.

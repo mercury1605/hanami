@@ -64,7 +64,7 @@ class PublicProfileScreen extends ConsumerWidget {
     );
   }
 
-  /// Avatar polaroid dán băng cạnh biệt danh; nút giấy; báo cáo/chặn là chữ nhỏ (spec §7.5).
+  /// Avatar polaroid dán băng cạnh biệt danh; nút giấy; báo cáo/chặn là chữ nhỏ.
   Widget _header(
     BuildContext context,
     WidgetRef ref,

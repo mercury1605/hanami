@@ -27,8 +27,8 @@ public final class Dtos {
     }
 
     /**
-     * {@code avatar} = "v:animal:palette:accessory", duy nhất toàn hệ thống (docs/19-avatar-mechanism.md).
-     * {@code avatarSpins} = số lượt quay avatar còn lại (§8).
+     * {@code avatar} = "v:animal:palette:accessory", duy nhất toàn hệ thống.
+     * {@code avatarSpins} = số lượt quay avatar còn lại.
      */
     public record MeProfile(String publicId, String alias, String leadAnimal, String avatar, String ageGroup,
                             boolean discoverable, String plan, int avatarSpins, Instant createdAt) {

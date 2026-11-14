@@ -18,7 +18,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:animal_locket/core/l10n/tr.dart';
 
-/// Khám phá: thẻ polaroid lớn, nút giấy và con dấu (spec §7.5).
+/// Khám phá: thẻ polaroid lớn, nút giấy và con dấu.
 class DiscoveryScreen extends ConsumerStatefulWidget {
   const DiscoveryScreen({super.key});
   @override

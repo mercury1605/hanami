@@ -16,7 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-/// Quay một avatar mới bằng lượt tặng kèm gói Pro (docs/19 §8).
+/// Quay một avatar mới bằng lượt tặng kèm gói Pro.
 ///
 /// Server quay trước, hiệu ứng chỉ chạy trên kết quả đã có. Avatar mới vào bộ sưu tập; đổi sang nó là một bước
 /// riêng người dùng tự chọn, nên avatar đang dùng không bị thay sau lưng.

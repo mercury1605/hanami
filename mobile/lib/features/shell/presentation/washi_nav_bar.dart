@@ -11,7 +11,7 @@ class WashiNavItem {
   final String label;
 }
 
-/// Thanh tab "băng washi & polaroid" (spec §3, mockup nav-options-v1 phương án 3).
+/// Thanh tab "băng washi & polaroid".
 /// Mục Ảnh (icon photos) là một tấm polaroid nhỏ nghiêng; tab đang chọn có
 /// mẩu washi dán chéo phía sau.
 class WashiNavBar extends StatelessWidget {

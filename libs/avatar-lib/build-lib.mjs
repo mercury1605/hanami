@@ -1,6 +1,6 @@
 // Sinh avatar-lib.vN.json cho mọi phiên bản (lib-v1.mjs, lib-v2.mjs …).
 // Chạy: node libs/avatar-lib/build-lib.mjs [--preview <file.html>]   Tự kiểm: node libs/avatar-lib/check.mjs
-// QUY TẮC (docs/19 §3.2): phiên bản đã phát hành sinh lại phải trùng từng byte;
+// QUY TẮC: phiên bản đã phát hành sinh lại phải trùng từng byte;
 // phiên bản mới được vẽ lại khoá cũ nhưng phải giữ nguyên bộ khoá (con vật × bảng màu × phụ kiện).
 import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";

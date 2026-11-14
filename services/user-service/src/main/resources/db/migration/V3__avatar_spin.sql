@@ -1,4 +1,4 @@
--- Lượt quay avatar mua được (docs/19-avatar-mechanism.md §8).
+-- Lượt quay avatar mua được.
 -- Số dư nằm ở đây, KHÔNG ở ví của billing-service: như vậy việc trừ lượt và việc cấp avatar từ avatar_pool
 -- nằm trong cùng một transaction, nên không thể mất lượt (cấp avatar lỗi thì lượt rollback) cũng không thể
 -- quay nhiều hơn số lượt đã mua. billing-service vẫn là nguồn sự thật về tiền và giữ sổ cái.

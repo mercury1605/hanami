@@ -102,7 +102,7 @@ public class UserController {
     }
 
     /**
-     * Quay một avatar mới bằng một lượt đã mua (docs/19 §8). Avatar vào bộ sưu tập, avatar đang dùng KHÔNG đổi;
+     * Quay một avatar mới bằng một lượt đã mua. Avatar vào bộ sưu tập, avatar đang dùng KHÔNG đổi;
      * muốn đổi thì gọi {@code PUT /users/me/avatar}. Hết lượt: {@code 409 NO_AVATAR_SPIN}.
      */
     @PostMapping("/users/me/avatar/spin")

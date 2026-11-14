@@ -144,7 +144,7 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen>
   }
 }
 
-/// Một tin nhắn là mẩu giấy ghi chú dán washi, nghiêng xen kẽ (spec §7.6).
+/// Một tin nhắn là mẩu giấy ghi chú dán washi, nghiêng xen kẽ.
 class _MessageBubble extends StatelessWidget {
   const _MessageBubble({
     required this.message,

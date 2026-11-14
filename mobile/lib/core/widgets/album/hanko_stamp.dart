@@ -5,7 +5,7 @@ import 'package:animal_locket/core/widgets/album_icon.dart';
 import 'package:flutter/material.dart';
 
 /// Nút bật/tắt dạng con dấu hanko khắc hình [mark] (mặc định trái tim cho nút thích,
-/// dấu tích cho ô đồng ý). Không dùng chữ (spec §2). "Đóng dấu" khi bật.
+/// dấu tích cho ô đồng ý). Không dùng chữ. "Đóng dấu" khi bật.
 class HankoStamp extends StatefulWidget {
   const HankoStamp({
     super.key,

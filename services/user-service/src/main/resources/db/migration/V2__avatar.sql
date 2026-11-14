@@ -1,4 +1,4 @@
--- Avatar duy nhất toàn hệ thống (docs/19-avatar-mechanism.md).
+-- Avatar duy nhất toàn hệ thống.
 -- Kho được seed lúc khởi động từ avatar-lib (AvatarPoolSeeder); tài khoản cũ được cấp bởi AvatarBackfill.
 
 CREATE TABLE avatar_pool (

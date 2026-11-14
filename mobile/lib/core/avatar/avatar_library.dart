@@ -6,7 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 
-/// Mã avatar "v:animal:palette:accessory" (docs/19-avatar-mechanism.md).
+/// Mã avatar "v:animal:palette:accessory".
 /// Duy nhất toàn hệ thống: server cấp, client chỉ vẽ.
 @immutable
 class AvatarCode {
@@ -134,7 +134,7 @@ class AvatarLibraryData {
 
 /// Kho các phiên bản thư viện đang có trên máy. App đóng gói bản mới nhất (v2 origami);
 /// phiên bản khác tải một lần rồi lưu file. Mọi mã được vẽ bằng thư viện mới nhất có
-/// khoá đó (docs/19 §3.2): mã đã cấp `1:fox:0:none` ra con cáo origami của v2.
+/// khoá đó: mã đã cấp `1:fox:0:none` ra con cáo origami của v2.
 class AvatarLibraries {
   AvatarLibraries._();
 

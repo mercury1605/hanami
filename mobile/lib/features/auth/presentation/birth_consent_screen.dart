@@ -12,7 +12,7 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:animal_locket/core/l10n/tr.dart';
 
-/// Ngày sinh + đồng ý điều khoản trên một phiếu giấy dán băng (spec §7.3).
+/// Ngày sinh + đồng ý điều khoản trên một phiếu giấy dán băng.
 class BirthConsentScreen extends StatefulWidget {
   const BirthConsentScreen({super.key});
 

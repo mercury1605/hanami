@@ -18,7 +18,7 @@ public final class DiscoveryDtos {
 
     /**
      * Thẻ gợi ý: chỉ alias, con vật, avatar, mức khoảng cách. Không toạ độ, không ảnh thật, không thông tin định danh.
-     * {@code avatar} = "v:animal:palette:accessory" (docs/19-avatar-mechanism.md), client tự vẽ.
+     * {@code avatar} = "v:animal:palette:accessory", client tự vẽ.
      */
     public record Card(String publicId, String alias, String leadAnimal, String avatar, String distanceBand,
                        boolean online, boolean boosted) {

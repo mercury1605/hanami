@@ -36,7 +36,7 @@ class BillingState {
   final String? message;
 
   /// Sản phẩm mua được qua trang thanh toán web của chúng ta (/pay).
-  /// Ẩn gói con vật (PACK): thuộc cơ chế con vật cũ, mua xong không hiện ở đâu (docs/19).
+  /// Ẩn gói con vật (PACK): thuộc cơ chế con vật cũ, mua xong không hiện ở đâu.
   List<BillingProduct> get webProducts =>
       products.where((p) => p.purchasableOnline && p.type != 'PACK').toList();
 

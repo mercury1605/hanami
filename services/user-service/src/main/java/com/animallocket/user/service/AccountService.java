@@ -158,7 +158,7 @@ public class AccountService {
     }
 
     /**
-     * Đã ngừng: con vật hiển thị giờ là avatar duy nhất cấp khi đăng ký (docs/19-avatar-mechanism.md).
+     * Đã ngừng: con vật hiển thị giờ là avatar duy nhất cấp khi đăng ký.
      * Đổi avatar trong bộ sưu tập sẽ làm cùng phần nạp tiền.
      */
     public Dtos.MeProfile setLeadAnimal(String publicId, String animalCode) {

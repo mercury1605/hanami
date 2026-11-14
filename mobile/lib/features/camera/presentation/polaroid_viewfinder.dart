@@ -6,7 +6,7 @@ import 'package:animal_locket/core/widgets/album/washi_photo_card.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-/// Khung ngắm là tấm polaroid đang hiện hình (spec §7.4, người dùng chọn kiểu A):
+/// Khung ngắm là tấm polaroid đang hiện hình:
 /// viền trắng, lề dưới dày ghi ngày viết tay, góc ảnh in ngày số cam kiểu máy
 /// film, băng washi ở mép trên, nghiêng nhẹ.
 class PolaroidViewfinder extends StatelessWidget {

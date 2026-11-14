@@ -3,7 +3,7 @@ import 'dart:math' as math;
 import 'package:animal_locket/core/theme/album_palette.dart';
 import 'package:flutter/material.dart';
 
-/// Nền giấy theo theme, có vài khối giấy gấp xoay chéo tràn mép (spec §3).
+/// Nền giấy theo theme, có vài khối giấy gấp xoay chéo tràn mép.
 class AppBackground extends StatelessWidget {
   const AppBackground({super.key, required this.child});
   final Widget child;

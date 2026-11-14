@@ -13,7 +13,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:animal_locket/core/l10n/tr.dart';
 
-/// Bạn bè và lời mời như một cuốn sổ địa chỉ: tab giấy + trang kẻ (spec §7.5).
+/// Bạn bè và lời mời như một cuốn sổ địa chỉ: tab giấy + trang kẻ.
 class FriendsScreen extends ConsumerWidget {
   const FriendsScreen({super.key});
   @override

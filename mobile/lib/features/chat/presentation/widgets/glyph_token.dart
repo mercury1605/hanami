@@ -4,7 +4,7 @@ import 'package:animal_locket/features/chat/domain/glyph.dart';
 import 'package:animal_locket/features/chat/presentation/widgets/glyph_drawing_pad.dart';
 import 'package:flutter/material.dart';
 
-/// Ký hiệu đã chọn: mẩu giấy nhỏ chứa glyph và nút × (spec §7.6).
+/// Ký hiệu đã chọn: mẩu giấy nhỏ chứa glyph và nút ×.
 class GlyphToken extends StatelessWidget {
   const GlyphToken({
     super.key,

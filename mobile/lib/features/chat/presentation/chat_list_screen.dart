@@ -10,7 +10,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:animal_locket/core/l10n/tr.dart';
 
-/// Danh sách chat trên một trang giấy kẻ, cùng kiểu sổ bạn bè (spec §7.6).
+/// Danh sách chat trên một trang giấy kẻ, cùng kiểu sổ bạn bè.
 class ChatListScreen extends ConsumerWidget {
   const ChatListScreen({super.key});
   @override

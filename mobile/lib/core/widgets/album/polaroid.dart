@@ -6,7 +6,7 @@ import 'package:animal_locket/core/widgets/album/washi_photo_card.dart';
 import 'package:flutter/material.dart';
 
 /// Ảnh polaroid: khung giấy, ảnh vuông, lề dưới dày có chú thích viết tay,
-/// băng washi ở mép trên, hơi nghiêng (spec §7.3).
+/// băng washi ở mép trên, hơi nghiêng.
 class Polaroid extends StatelessWidget {
   const Polaroid({
     super.key,

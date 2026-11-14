@@ -2,7 +2,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-/// Bốn theme màu của app (spec §4). Theme chỉ đổi bảng màu, không đổi bố cục.
+/// Bốn theme màu của app. Theme chỉ đổi bảng màu, không đổi bố cục.
 enum AlbumThemeId { shu, yuzu, sakura, sora }
 
 /// Bảng màu "album giấy gấp", gắn vào [ThemeData.extensions].

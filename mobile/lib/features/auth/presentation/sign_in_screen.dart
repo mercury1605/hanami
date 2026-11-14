@@ -13,7 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:animal_locket/core/l10n/tr.dart';
 
-/// Màn đăng nhập như bìa sổ ảnh: hai polaroid con vật origami (spec §7.3).
+/// Màn đăng nhập như bìa sổ ảnh: hai polaroid con vật origami.
 class SignInScreen extends ConsumerWidget {
   const SignInScreen({super.key});
 

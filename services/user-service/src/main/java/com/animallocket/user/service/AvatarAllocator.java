@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * Cấp một avatar CHƯA AI SỞ HỮU cho một người (docs/19-avatar-mechanism.md §4.2).
+ * Cấp một avatar CHƯA AI SỞ HỮU cho một người.
  * Chạy trong transaction của người gọi: transaction rollback thì việc giữ chỗ cũng rollback, avatar về trống.
  */
 @Component

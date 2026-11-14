@@ -1,6 +1,6 @@
 # Animal Locket Mobile
 
-Flutter client for iOS and Android based on `../docs/17-flutter-app-requirements.md` and the API contract in `../docs/06-api-reference.md`.
+Flutter client for iOS and Android. API contract: see the services under `../services` and the gateway in `../infra/api-gateway`.
 
 ## Run
 

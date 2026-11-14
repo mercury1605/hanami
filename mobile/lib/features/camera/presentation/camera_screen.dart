@@ -12,7 +12,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:animal_locket/core/l10n/tr.dart';
 
-/// Camera: khung ngắm là tấm polaroid đang hiện hình (spec §7.4).
+/// Camera: khung ngắm là tấm polaroid đang hiện hình.
 class CameraScreen extends StatefulWidget {
   const CameraScreen({super.key});
 

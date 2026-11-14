@@ -47,7 +47,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-/** Lượt quay avatar mua được (docs/19-avatar-mechanism.md §8). */
+/** Lượt quay avatar mua được. */
 @SpringBootTest
 @AutoConfigureMockMvc
 class AvatarSpinIntegrationTest {
@@ -216,7 +216,7 @@ class AvatarSpinIntegrationTest {
                 .andExpect(jsonPath("$.avatar").value(won));
         assertEquals(won, users.findByPublicId(me).orElseThrow().avatarCode());
 
-        // Đổi lại avatar cũ vẫn được: avatar cũ vẫn thuộc người này trong kho (docs/19 §4.3).
+        // Đổi lại avatar cũ vẫn được: avatar cũ vẫn thuộc người này trong kho.
         mvc.perform(as(put("/api/v1/users/me/avatar"), me).content("{\"avatar\":\"" + mine + "\"}"))
                 .andExpect(status().isOk()).andExpect(jsonPath("$.avatar").value(mine));
         // Gọi lại với avatar đang dùng: không lỗi, không đổi gì.

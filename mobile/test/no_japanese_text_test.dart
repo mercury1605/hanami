@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter_test/flutter_test.dart';
 
 /// App chỉ hỗ trợ tiếng Việt và tiếng Anh. Chữ Nhật chỉ được dùng để trang trí
-/// ở vài chỗ chủ dự án chốt (spec §2, sửa 2026-11-10), và chỉ gồm các ký tự có
+/// ở vài chỗ chủ dự án chốt, và chỉ gồm các ký tự có
 /// trong font subset `ShipporiMincho-Accents.ttf`.
 const _allowedDecorative = '朱柚桜空瞬思い出をそっと';
 

@@ -18,7 +18,7 @@ abstract final class AppFonts {
 abstract final class AppTheme {
   static ThemeData get light => forPalette(AlbumPalette.of(AlbumThemeId.shu));
 
-  /// ThemeData "album giấy gấp" dựng từ một bảng màu (spec §3–4).
+  /// ThemeData "album giấy gấp" dựng từ một bảng màu.
   static ThemeData forPalette(AlbumPalette p) {
     final scheme = ColorScheme(
       brightness: Brightness.light,

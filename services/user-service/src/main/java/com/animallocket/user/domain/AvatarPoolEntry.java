@@ -12,7 +12,7 @@ import java.time.Instant;
 
 /**
  * Một tổ hợp avatar trong kho. {@code ownerPublicId} đã gán thì không bao giờ về null,
- * kể cả khi tài khoản bị xoá (docs/19-avatar-mechanism.md §4.5). Chỉ ghi bằng câu UPDATE có điều kiện
+ * kể cả khi tài khoản bị xoá. Chỉ ghi bằng câu UPDATE có điều kiện
  * trong {@code AvatarPoolRepository.claim}, không sửa qua entity.
  */
 @Entity

@@ -4,7 +4,7 @@ import 'package:animal_locket/core/widgets/album_icon.dart';
 import 'package:flutter/material.dart';
 
 /// Ô giấy vuông gấp góc chỉ có icon (hoặc [child], ví dụ một glyph);
-/// [label] dành cho trình đọc màn hình (spec §7.4).
+/// [label] dành cho trình đọc màn hình.
 class PaperTileButton extends StatelessWidget {
   const PaperTileButton({
     super.key,

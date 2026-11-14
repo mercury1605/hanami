@@ -4,7 +4,7 @@ import 'package:animal_locket/core/theme/album_palette.dart';
 import 'package:animal_locket/core/widgets/album_icon.dart';
 import 'package:flutter/material.dart';
 
-/// Nút giấy (spec §7.3). Mặc định: dải giấy màu son, mép trên/dưới răng cưa như
+/// Nút giấy. Mặc định: dải giấy màu son, mép trên/dưới răng cưa như
 /// giấy xé, góc phải trên gấp mép kiểu origami. `.tape`: nhãn giấy có mẩu washi.
 class PaperButton extends StatelessWidget {
   const PaperButton({

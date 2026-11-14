@@ -1,7 +1,5 @@
 # Triển khai Animal Locket bằng Docker Compose
 
-Stack demo DigitalOcean dùng [runbook riêng](../docs/deployment/digitalocean-demo/README.md).
-CI/CD backend, secret GitHub và rollback được hướng dẫn ở [bước 10](../docs/deployment/digitalocean-demo/10-backend-cicd.md).
 
 > **Trạng thái kiểm chứng:** bộ file này mới được kiểm tra **tĩnh** (cú pháp YAML/JSON, tham chiếu `depends_on`, biến môi trường,
 > cổng, file mount, khớp với `application.yml` của từng service). **Chưa được chạy thật với Docker.** Xem mục
@@ -66,7 +64,7 @@ Cần các biến trong `.env`: `R2_ENDPOINT` (`https://<account-id>.r2.cloudfla
 
 ## 5. Face-worker (đã gỡ)
 
-face-worker đã bị gỡ khỏi repo. Khi client báo upload xong (`complete`), media-service kiểm tra cỡ và `Content-Type` của object trên R2 rồi đánh dấu `READY` và phát `PHOTO_READY`; không sao chép object, không che mặt. Xem ADR-014 trong [docs/15-adr.md](../docs/15-adr.md).
+face-worker đã bị gỡ khỏi repo. Khi client báo upload xong (`complete`), media-service kiểm tra cỡ và `Content-Type` của object trên R2 rồi đánh dấu `READY` và phát `PHOTO_READY`; không sao chép object, không che mặt.
 
 ## 6. Quan sát
 

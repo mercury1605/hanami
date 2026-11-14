@@ -1,4 +1,4 @@
-// Thư viện avatar v2: origami "gấp đơn giản" (spec UI redesign §5.1, ADR-015).
+// Thư viện avatar v2: origami "gấp đơn giản".
 // Cùng bộ khoá với v1: dùng lại bảng RAW 50 con và 10 màu gốc, chỉ vẽ lại từng mảnh.
 // Kiểu vẽ: mảng giấy đa giác cạnh thẳng; một nếp dọc giữa mặt (nửa phải sẫm);
 // tai và mảnh phụ là mảnh gấp đôi (nếp từ đỉnh xuống giữa đáy); mắt chấm mực.

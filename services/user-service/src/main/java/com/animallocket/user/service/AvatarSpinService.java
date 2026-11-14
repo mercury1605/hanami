@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.Instant;
 
 /**
- * Lượt quay avatar mua được (docs/19-avatar-mechanism.md §8).
+ * Lượt quay avatar mua được.
  *
  * <p>Lượt được cấp từ event {@code CONSUMABLE_GRANTED} của billing-service (một lượt cho mỗi kỳ thuê bao), và
  * được tiêu ở {@link #spin(String)} <b>trong cùng transaction</b> với {@link AvatarAllocator}: kho cạn thì

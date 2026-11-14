@@ -160,7 +160,7 @@ class _ProScreenState extends ConsumerState<ProScreen> {
   }
 }
 
-/// Lượt quay avatar tặng kèm mỗi kỳ thuê bao (docs/19 §8). Hiện ngay sau khi mua, lúc người dùng còn ở đây.
+/// Lượt quay avatar tặng kèm mỗi kỳ thuê bao. Hiện ngay sau khi mua, lúc người dùng còn ở đây.
 class _AvatarSpinsNote extends ConsumerWidget {
   const _AvatarSpinsNote();
 
